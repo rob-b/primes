@@ -11,11 +11,13 @@ def is_prime(n):
 
 
 def primes_for(n):
-    seen = 0
-    candidates = itertools.count(2)
-    results = []
+    seen = 1
+    candidates = itertools.count(start=1, step=2)
+    results = [2]
     while n > seen:
         x = candidates.next()
+        if x == 1:
+            continue
         if is_prime(x):
             results.append(x)
             seen += 1
