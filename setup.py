@@ -8,6 +8,8 @@ setup(
     long_description=open('README.rst').read(),
     license='BSD',
     install_requires=[],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     py_modules=['primes'],
     entry_points="""\
     [console_scripts]

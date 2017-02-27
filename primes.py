@@ -28,12 +28,6 @@ def draw_matrix(m):
 
 
 def matrix(xs):
-    """
-    |   | 2  | 3  | 5  |
-    | 2 | 4  | 6  | 10 |
-    | 3 | 6  | 9  | 15 |
-    | 5 | 10 | 15 | 25
-    """
     xs.insert(0, 1)
     return [[(row * col) for col in xs] for row in xs]
 
@@ -53,16 +47,22 @@ def primes_for(n):
 
 
 def usage(progname):
-    return u'Usage: {} n'.format(os.path.basename(progname))
+    msg = u'Usage: {} n (where n is number of prime numbers)'
+    return msg.format(os.path.basename(progname))
 
 
 def main():
     if len(sys.argv) != 2:
         sys.exit(usage(sys.argv[0]))
-    n = sys.argv[1]
-    primes = primes_for(int(n))
 
-    for row in draw_matrix(matrix(primes)):
+    try:
+        n = int(sys.argv[1])
+    except (ValueError, TypeError):
+        sys.exit(usage(sys.argv[0]))
+
+    primes = primes_for(n)
+    multiplied = matrix(primes)
+    for row in draw_matrix(multiplied):
         print(row)
 
 
