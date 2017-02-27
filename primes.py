@@ -1,4 +1,6 @@
 # coding=utf-8
+import sys
+import os.path
 import itertools
 
 def is_prime(n):
@@ -24,8 +26,15 @@ def primes_for(n):
     return results
 
 
+def usage(progname):
+    return u'Usage: {} n'.format(os.path.basename(progname))
+
+
 def main():
-    print("hi")
+    if len(sys.argv) != 2:
+        sys.exit(usage(sys.argv[0]))
+    n = sys.argv[1]
+    print(primes_for(int(n)))
 
 
 if __name__ == "__main__":
