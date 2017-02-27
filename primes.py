@@ -2,6 +2,7 @@
 import sys
 import os.path
 import itertools
+import math
 
 
 def is_prime(n):
@@ -11,8 +12,9 @@ def is_prime(n):
         return False
     if n % 3 == 0:
         return False
+
     is_ = True
-    for i in xrange(5, n):
+    for i in xrange(5, int(math.sqrt(n) + 1)):
         if n % i == 0:
             is_ = False
             break
