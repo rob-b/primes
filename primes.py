@@ -24,7 +24,7 @@ def is_prime(n):
 
 def draw_matrix(m):
     for row in m:
-        print(' | '.join([unicode(x) if x != 1 else ' ' for x in row]))
+        yield ' | '.join([unicode(x) if x != 1 else ' ' for x in row])
 
 
 def matrix(xs):
@@ -61,7 +61,9 @@ def main():
         sys.exit(usage(sys.argv[0]))
     n = sys.argv[1]
     primes = primes_for(int(n))
-    draw_matrix(matrix(primes))
+
+    for row in draw_matrix(matrix(primes)):
+        print(row)
 
 
 if __name__ == "__main__":

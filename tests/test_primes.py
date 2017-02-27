@@ -21,3 +21,10 @@ def test_matrix():
                                [2, 4, 6, 10],
                                [3, 6, 9, 15],
                                [5, 10, 15, 25]]
+
+
+def test_draw_matrix():
+    from primes import draw_matrix
+    m = [[1, 2, 3, 5],
+         [5, 10, 15, 25]]
+    assert list(draw_matrix(m)) == [u'  | 2 | 3 | 5', u'5 | 10 | 15 | 25']
