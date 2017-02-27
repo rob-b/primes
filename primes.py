@@ -3,9 +3,16 @@ import sys
 import os.path
 import itertools
 
+
 def is_prime(n):
+    if n in [2, 3]:
+        return True
+    if n % 2 == 0:
+        return False
+    if n % 3 == 0:
+        return False
     is_ = True
-    for i in xrange(2, n):
+    for i in xrange(5, n):
         if n % i == 0:
             is_ = False
             break
