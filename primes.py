@@ -2,7 +2,6 @@
 import sys
 import os.path
 import itertools
-import math
 
 
 def is_prime(n):
@@ -13,12 +12,30 @@ def is_prime(n):
     if n % 3 == 0:
         return False
 
-    is_ = True
-    for i in xrange(5, int(math.sqrt(n) + 1)):
-        if n % i == 0:
-            is_ = False
-            break
-    return is_
+    poss = 5
+    offset = 2
+    while n >= poss * poss:
+        if n % poss == 0:
+            return False
+        poss += offset
+        offset = 6 - offset
+    return True
+
+
+def draw_matrix(m):
+    for row in m:
+        print(' | '.join([unicode(x) if x != 1 else ' ' for x in row]))
+
+
+def matrix(xs):
+    """
+    |   | 2  | 3  | 5  |
+    | 2 | 4  | 6  | 10 |
+    | 3 | 6  | 9  | 15 |
+    | 5 | 10 | 15 | 25
+    """
+    xs.insert(0, 1)
+    return [[(row * col) for col in xs] for row in xs]
 
 
 def primes_for(n):
@@ -43,7 +60,8 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(usage(sys.argv[0]))
     n = sys.argv[1]
-    print(primes_for(int(n)))
+    primes = primes_for(int(n))
+    draw_matrix(matrix(primes))
 
 
 if __name__ == "__main__":
